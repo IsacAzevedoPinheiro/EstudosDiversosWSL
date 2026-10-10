@@ -1,0 +1,133 @@
+
+
+
+
+
+
+
+
+Os branquelos em ação
+Game Design Document
+Versão: 1.1
+
+
+Autores:
+Allan R
+Isac A Pinheiro
+
+
+Niterói, 
+Agosto de 2025
+
+
+Índice
+
+1.	Highconcept	3
+2.	Gameplay e Enredo	4
+3.     Personagens…………………………………………………………………………………………………………………………………5
+4.	Interface de usuário	6
+5.	Audio e música	7
+6.	Arte Conceito e refêrencias	8
+7.	Ideias adicionais e observações	9
+    1. Highconcept
+
+O jogo “nome” é um beat 'em up  multijogador local co-op, não obrigatório (pode ser solo também), que tem como protagonistas dois atores de ação que estão fazendo um filme pro cinema chamado: “nome do filme”.  O jogo terá a perspectiva lateral, sendo possível se movimentar livre mente pelo terreno com Wumberto e Fátima, ambos vivem agentes de segurança do Presidente que foi capturado.
+
+    2. Gameplay e Enredo
+
+- Detalhando toda a mecânica:
+
+Cada jogador terá um tipo de gameplay de combate diferente, o Wumberto é bem forte, ele só ataca corpo a corpo e a Fátima ataca a distância com uma pistola de elite. 
+Durante a fase cada inimigo derrotado gera um pouco de pontos para uma barra de super que concede um ataque poderoso diferente no caso de cada um dos jogadores, Fátima pega uma bazuca e atira um projétil tele guiado que acerta vários inimigos; Wumberto se transforma num monstro gigante por tempo limitado e ganha mais velocidade e força sendo capaz agora de lançar inimigos para longe, também por tempo limitado.
+
+- Desafios:
+O jogo contará com ordas massivas de inimigos de diferentes classes, além disso um boos no final de cada fase. Além disso, entre as fases haverá um quick event time competitivo entre os jogadores.
+
+- Avanços no jogo:
+O game contará com três fases que são diferentes em cenário e em pontos da história (conforme a história avança), de uma fase pra outra os inimigos passam a ser mais numerosos, com mais ordas de inimigos e eventualmente mais quantidade relativa de inimigos aprimorados.
+
+- Gameplay e história:
+Cada boss do jogo é um dos líderes antagonistas do game, quero dizer com isso que são 3 vilões principais que serão derrotados um a um, um por fase. 
+
+- Como o jogo termina:
+O game termina ao final da terceira fase, quando o último boss é derrotado e o presente é salvo pelos protagonistas. Importante ressaltar que não é possível avançar sem antes ter acabado com todos os inimigos do cenário, com todos derrotados uma seta indiga pra onde ir enquanto o mapa sofre um scrolling para direita.
+
+- Vidas no jogo:
+Cada personagem tem 3 vidas, cada uma delas é constituida por uma barra de energia que quando acaba subtrai uma vida das 3 iniciais e reseta o personagem para o meio da tela. Caso ao menos um dos jogadores gastar todas as suas 3 vidas o jogo termina em Game Over, o progresso será zerado, voltando até a primeira fase.
+    3. Personagens
+
+Protagonistas:
+Dois atores de Brwood, agentes secretos do filme “Presidente em apuros” (nome provisório). Wumberto é segurança desde sempre, faz muita musculação pra ficar imenso, assim como dito antes ele ataca apenas em curta distância (corpo a corpo). Fátima é atiradora olímpica mas cansou de apenas treinar o esporte e decidiu por em prática, se tornando segurança de elite trabalhando para o presidente, assim como seu colega de profissão Wumberto.
+
+Presidente:
+A figura do presidente aqui será um ajuntado de algumas figuras politicas brasileiras, sem especificamente serem presidentes do Brasil,  e aliás ele é presente do país UFF, não do Brasil.
+
+Boses:
+No game o presidente é sequestrado por 3 figuras que agiram em conluio para executar tal feito, são eles: 
+Carlinhos Vila, o chefe de segurança do Presidente;  Joga Cubos militares, que dão dano nos jogadores.
+Seu Jonathan, o ministro da cultura; Usa um violão como porrete.
+Laura Mel, a braço direito do presidente e ativista; Joga animais da Fauna brasileira.
+
+Inimigos:
+Serão 3 variações dos mesmos 3 inimigos para cada uma das 3 fases. Teremos um capanga frágil, será o mais comum, com menos vida e também o mais fraco sendo inclusive menor que o inimigo aprimorado. O inimigo aprimorado é mais corpulento, menos veloz e ataque mais demorado, entretanto é mais forte que o anterior, ainda não atira nenhum tipo de projétil. O inimigo lançador regula de tamanho com o frágil, a única coisa diferente é que ele se mantém a distância e atira projéteis que dão dano fraco (igual ao físico infligido pelo inimigo frágil).
+    4. Interface de usuário
+
+Menu principal: 
+Uma arte do game que não será necessáriamente uma pixel art, ela trará um resumo visual da ideia do jogo, mostrando o diretor do fileme atrás das câmeras e os atores num fundo verde.
+Além dessa imagem terá um menu simples com 3 opções: Jogar, Novo jogo e Controles (alteráveis). 
+
+Menu de escolha de fase:
+Ao selecionar jogar:
+Um roteiro de fundo, para representar a temática de filme, com uma miniatura para a escolha de cada uma das 3 fases, sendo que sempre que uma fase for escolhida o(s) jogador(res) vai(vão) para o inicio dela.
+
+Menu de pause: 
+Quando pausar:
+Um pop-up no meio da tela com as funções: Voltar pro jogo, alterar controles e sair, além de um ícone para zerar o som do jogo e um para música também.
+
+
+HUD da fase:
+Sempre que estivér em jogo:
+Cada jogador terá um mostrados de vida ao lado de uma imagem do rosto do personagem, ele mostrará também a quantidade de “continues” e ainda se o personagem está vivo no momento (Depois da perda de cada uma das 3 vidas (“continues”) o HUD ficará um pouco apagado até que o jogador entre novamente no jogo).
+
+    5. Audio e música
+
+Cada uma das ações abaixo terá o som a seguir:
+
+*Musica padrão do jogo: Deve ser simples, por um motivo importante, ela toca durante praticamente todo o jogo, mas vai passar uma leve tensão ao passo que mostra que o tema sendo tratado é ação! O que significa que não deixará de ser divertida, mas comedida, provavelmente algo como a junção do tema de Missão impossível e o tema do New Super Mario Wii, em essência, não necessariamente em som.
+
+*Golpe inimigo:  
+Frágil: Um som leve de esforço como um “Umrf”.
+Aprimorado: Um som mais pesado de esforço como um “UMRF”.
+Lançador: Som de projétil sendo disparado.
+Carlinhos Vila: Faz um “RAÁ” quando lança um projétel, mas as vezes solta uma risada “HIHI HAHA”, além do som do projétil.
+Seu Jonathan: Som de violão quebrando, deve passar um pouco de impacto como um “BLAMMm”.
+Laura Mel: Ela vai fazer um “RAÁ” quando lançar um animal, seguido do som do animal que for lançado.
+Caso qualquer um desses golpes acerte um dos jogadores haverá um som de dano: Wumberto um som mais grave, ao passo que Fátima mais agudo.
+
+*Golpe do Wumberto, Golpe da Fátima: São variações dos sons de dano, com menos peso.
+
+*Golpe super do Wumberto, Golpe super da Fátima: Serão também variações, uma vez que as vozes dos personagens são as mesmas, obviamente, a diferença aqui é que esses sons de super serão prolongados e com mais sensação de satisfação.
+
+*Som de confirmação: Um som simples de menu que soa quando uma opção for escolhida, deve ser simples como um “plim”.
+
+*Som de opção: Soará quando navegar pelo menu, algo que seja como o som que soava no Xbox 360 quando passava de um ícone para outro – “pbum”.
+
+    6. Arte e referência
+
+Tem que ter uns desenhos aqui
+Apenas um Show: Pancadaria
+Casttle Crashers
+    7. Ideias adicionais e observações
+
+- Descrição e ilustração dos inimigos que existem no universo do jogo;
+
+- Em qual ambiente/fase cada inimigo vai aparecer?
+
+- Como o jogado supera cada inimigo?
+
+- O que o jogador ganha ao derrotar cada inimigo?
+
+- Qual o comportamento e habilidades de cada inimigo?
+
+- Qual o comportamento e habilidades de cada inimigo?
+

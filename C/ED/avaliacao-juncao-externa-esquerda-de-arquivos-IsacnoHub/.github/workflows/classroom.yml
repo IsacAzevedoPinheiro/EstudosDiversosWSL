@@ -1,0 +1,137 @@
+name: Autograding Tests
+'on':
+- workflow_dispatch
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Case 1
+      id: case-1
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Case 1
+        setup-command: gcc -o executable left-outer-join.c
+        command: (echo "2;201;TI;\n4;102;Diretoria;\n3;103;Jardinagem;\n7;504;Biologia;"
+          > departamentos.txt) && (echo "1;1;Maria;\n2;1;Carlos;\n3;2;Ana;\n4;3;Bia;\n5;1;Joao;\n6;4;Patrick;"
+          > funcionarios.txt) && ./executable
+        input: ''
+        expected-output: |-
+          2;201;TI;3;Ana;
+          4;102;Diretoria;6;Patrick;
+          3;103;Jardinagem;4;Bia;
+          7;504;Biologia;0;;
+        comparison-method: exact
+        timeout: 1
+        max-score: 20
+    - name: Case 2
+      id: case-2
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Case 2
+        setup-command: gcc -o executable left-outer-join.c
+        command: (echo "1;302;RH;\n2;201;TI;\n4;102;Diretoria;\n3;103;Jardinagem;\n6;801;Marketing;"
+          > departamentos.txt) && (echo "1;1;Maria;\n2;1;Carlos;\n3;2;Ana;\n4;6;Bia;\n5;1;Joao;\n6;4;Patrick;\n7;1;Paula;\n8;1;Sergio;\n9;2;Rodrigo;"
+          > funcionarios.txt) && ./executable
+        input: ''
+        expected-output: |-
+          1;302;RH;1;Maria;
+          1;302;RH;2;Carlos;
+          1;302;RH;5;Joao;
+          1;302;RH;7;Paula;
+          1;302;RH;8;Sergio;
+          2;201;TI;3;Ana;
+          2;201;TI;9;Rodrigo;
+          4;102;Diretoria;6;Patrick;
+          3;103;Jardinagem;0;;
+          6;801;Marketing;4;Bia;
+        comparison-method: exact
+        timeout: 1
+        max-score: 20
+    - name: Case 3
+      id: case-3
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Case 3
+        setup-command: gcc -o executable left-outer-join.c
+        command: (echo "1;302;RH;\n2;201;TI;\n3;103;Jardinagem;" > departamentos.txt)
+          && (echo "1;5;Maria;\n2;5;Bia;\n3;6;Joao;\n4;4;Patrick;\n5;5;Paula;\n6;1;Sergio;\n6;8;Andre;"
+          > funcionarios.txt) && ./executable
+        input: ''
+        expected-output: |-
+          1;302;RH;6;Sergio;
+          2;201;TI;0;;
+          3;103;Jardinagem;0;;
+        comparison-method: exact
+        timeout: 1
+        max-score: 20
+    - name: Case 4
+      id: case-4
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Case 4
+        setup-command: gcc -o executable left-outer-join.c
+        command: (echo "1;302;RH;\n2;201;TI;\n4;102;Diretoria;\n3;103;Jardinagem;\n5;603;Marketing;\n6;503;Obras;\n7;708;Pesquisa;"
+          > departamentos.txt) && (echo "1;1;Maria;\n2;1;Carlos;\n3;2;Ana;\n4;6;Bia;\n5;1;Joao;\n6;4;Patrick;\n7;6;Paula;\n8;1;Sergio;\n9;2;Rodrigo;\n10;6;Cleber;\n11;5;Julia;\n12;6;Hugo;\n13;5;Vitoria;\n14;5;Rita;\n15;2;Tulia;"
+          > funcionarios.txt) && ./executable
+        input: ''
+        expected-output: |-
+          1;302;RH;1;Maria;
+          1;302;RH;2;Carlos;
+          1;302;RH;5;Joao;
+          1;302;RH;8;Sergio;
+          2;201;TI;3;Ana;
+          2;201;TI;9;Rodrigo;
+          2;201;TI;15;Tulia;
+          4;102;Diretoria;6;Patrick;
+          3;103;Jardinagem;0;;
+          5;603;Marketing;11;Julia;
+          5;603;Marketing;13;Vitoria;
+          5;603;Marketing;14;Rita;
+          6;503;Obras;4;Bia;
+          6;503;Obras;7;Paula;
+          6;503;Obras;10;Cleber;
+          6;503;Obras;12;Hugo;
+          7;708;Pesquisa;0;;
+        comparison-method: exact
+        timeout: 1
+        max-score: 20
+    - name: Case 5
+      id: case-5
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Case 5
+        setup-command: gcc -o executable left-outer-join.c
+        command: (echo "4;102;Diretoria;\n3;103;Jardinagem;\n5;603;Marketing;\n6;503;Obras;\n10;1001;Cultura;"
+          > departamentos.txt) && (echo "1;1;Maria;\n2;1;Carlos;\n3;2;Ana;\n4;3;Bia;\n5;1;Joao;\n6;4;Patrick;\n7;1;Paula;\n8;1;Sergio;\n9;2;Rodrigo;\n10;6;Cleber;\n11;5;Julia;\n12;6;Hugo;\n13;5;Vitoria;\n14;5;Rita;\n15;2;Tulia;"
+          > funcionarios.txt) && ./executable
+        input: ''
+        expected-output: |-
+          4;102;Diretoria;6;Patrick;
+          3;103;Jardinagem;4;Bia;
+          5;603;Marketing;11;Julia;
+          5;603;Marketing;13;Vitoria;
+          5;603;Marketing;14;Rita;
+          6;503;Obras;10;Cleber;
+          6;503;Obras;12;Hugo;
+          10;1001;Cultura;0;;
+        comparison-method: exact
+        timeout: 1
+        max-score: 20
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        CASE-1_RESULTS: "${{steps.case-1.outputs.result}}"
+        CASE-2_RESULTS: "${{steps.case-2.outputs.result}}"
+        CASE-3_RESULTS: "${{steps.case-3.outputs.result}}"
+        CASE-4_RESULTS: "${{steps.case-4.outputs.result}}"
+        CASE-5_RESULTS: "${{steps.case-5.outputs.result}}"
+      with:
+        runners: case-1,case-2,case-3,case-4,case-5

@@ -1,0 +1,5 @@
+A hierarquia no controle de usuários da loja.  
+Classe base: Usuario (possui nome e senha).
+Subclasse 1: Cliente extends Usuario (adiciona dadosCadastrais).
+Subclasse 2: Funcionario extends Usuario (adiciona métodos de venda).
+Subclasse 3: Gerente extends Funcionario (herda a venda e adiciona fechamentoCaixa).

@@ -1,0 +1,72 @@
+name: Autograding Tests
+'on':
+- workflow_dispatch
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Caso 1
+      id: caso-1
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Caso 1
+        setup-command: gcc -o executable maior.c
+        command: "./executable"
+        input: 10-20-15
+        expected-output: '20'
+        comparison-method: exact
+        timeout: 1
+        max-score: 25
+    - name: Caso 2
+      id: caso-2
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Caso 2
+        setup-command: gcc -o executable maior.c
+        command: "./executable"
+        input: 7-8-6-5-4-3
+        expected-output: '8'
+        comparison-method: exact
+        timeout: 1
+        max-score: 25
+    - name: Caso 3
+      id: caso-3
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Caso 3
+        setup-command: gcc -o executable maior.c
+        command: "./executable"
+        input: 1-2-3-4-5-6-7-8
+        expected-output: '8'
+        comparison-method: exact
+        timeout: 1
+        max-score: 25
+    - name: Caso 4
+      id: caso-4
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Caso 4
+        setup-command: gcc -o executable maior.c
+        command: "./executable"
+        input: '500'
+        expected-output: '500'
+        comparison-method: exact
+        timeout: 1
+        max-score: 25
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        CASO-1_RESULTS: "${{steps.caso-1.outputs.result}}"
+        CASO-2_RESULTS: "${{steps.caso-2.outputs.result}}"
+        CASO-3_RESULTS: "${{steps.caso-3.outputs.result}}"
+        CASO-4_RESULTS: "${{steps.caso-4.outputs.result}}"
+      with:
+        runners: caso-1,caso-2,caso-3,caso-4

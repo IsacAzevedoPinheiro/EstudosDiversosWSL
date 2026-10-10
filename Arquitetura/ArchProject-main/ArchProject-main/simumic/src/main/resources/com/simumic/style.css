@@ -1,0 +1,107 @@
+.reg-rect {
+    -fx-stroke: #d2d5d5; stroke: #d2d5d5;
+    -fx-stroke-width: 1.5; stroke-width: 1.5;
+    -fx-fill: #000000; fill: #000000;
+}
+
+.reg-label {
+    -fx-font-family: 'Monospaced'; font-family: 'Monospaced';
+    -fx-font-weight: bold; font-weight: bold;
+    -fx-text-fill: #d2d5d5;
+    -fx-font-size: 13px; font-size: 13px;
+}
+
+.bank-case {
+    -fx-stroke: #d2d5d5; stroke: #d2d5d5;
+    -fx-stroke-width: 2; stroke-width: 2;
+    -fx-fill: #000000; fill: #000000;
+}
+
+.bus-line {
+    -fx-stroke: #d2d5d5; stroke: #d2d5d5;
+    -fx-stroke-width: 3; stroke-width: 3;
+}
+
+.logic-component {
+    -fx-stroke: #d2d5d5; stroke: #d2d5d5; 
+    -fx-stroke-width: 2; stroke-width: 2;
+    -fx-fill: #000000; fill: #000000;
+}
+
+.button-subciclo {
+    -fx-background-color: #000000; background-color: #000000;
+    -fx-text-fill: white;
+    -fx-font-weight: bold; font-weight: bold;
+    -fx-font-size: 12px; font-size: 12px;
+    -fx-border-color: #077d29; border-color: #077d29;
+    -fx-border-width: 2px; border-width: 2px;
+    -fx-pref-height: 39px;
+    -fx-min-height: 39px; min-height: 39px;
+    -fx-pref-width: 380px;
+    -fx-background-insets: 2;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0; border-radius: 0;
+}
+
+.subciclo-active {
+    -fx-background-color: linear-gradient(to right, #077d29  25%, #000000 25%); background-color: linear-gradient(to right, #077d29 025%, #000000 25%);
+}
+
+.button-padrao {
+    -fx-background-color: #000000; background-color: #000000;
+    -fx-text-fill: white;
+    -fx-font-weight: bold; font-weight: bold;
+    -fx-font-size: 12px; font-size: 12px;
+    -fx-border-color: #077d29; border-color: #077d29;
+    -fx-border-width: 2px; border-width: 2px;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0; border-radius: 0;
+}
+.button-padrao:pressed {
+    -fx-background-color: #077d29; background-color: #077d29;
+}
+
+.button-cache {
+    -fx-background-color: #000000; background-color: #000000;
+    -fx-text-fill: white;
+    -fx-font-weight: bold; font-weight: bold;
+    -fx-font-size: 12px; font-size: 12px;
+    -fx-border-color: #f1c40f; border-color: #f1c40f;
+    -fx-border-width: 2px; border-width: 2px;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0; border-radius: 0;
+
+}
+.button-cache:pressed {
+    -fx-background-color: #f1c40f; background-color: #f1c40f;
+    -fx-text-fill: white; 
+}
+.button-ciclo {
+    -fx-background-color: transparent; background-color: transparent;
+
+    -fx-text-fill: white;
+    -fx-font-weight: bold; font-weight: bold;
+    -fx-font-size: 12px; font-size: 12px;
+    -fx-border-color: #077d29; border-color: #077d29;
+    -fx-border-width: 2; border-width: 2;
+    -fx-padding: 10 20; padding: 10 20;
+    -fx-pref-width: 380px;
+    -fx-min-height: 39px; min-height: 39px;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0; border-radius: 0;
+}
+
+.button-ciclo:pressed {
+    -fx-background-color: #077d29; background-color: #077d29;
+}
+.cache-list {
+    -fx-background-color: #000000; background-color: #000000;
+    -fx-border-color: #333; border-color: #333;
+    -fx-font-family: 'Monospaced'; font-family: 'Monospaced';
+    -fx-font-size: 12px; font-size: 12px;
+}
+
+.cache-list .list-cell {
+    -fx-padding: 0; padding: 0;
+    -fx-background-color: transparent; background-color: transparent;
+}

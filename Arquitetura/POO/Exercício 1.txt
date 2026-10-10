@@ -1,0 +1,12 @@
+Exercício 1:
+Identificação de classes
+
+Pedido
+Pagamento
+Produto
+main
+
+A classe pedido retorna o resultado final da compra, com o valor final, nota fiscal e forma de pagamento;
+Pagamento retorna o valor final pela forma de pagamento;
+Produto retorna o valor de cada produto e a quantidade para a checagem no estoque;
+A principal administra tudo, com as entradas e saídas do programa;

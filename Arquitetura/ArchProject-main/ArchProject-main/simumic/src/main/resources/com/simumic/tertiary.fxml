@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="10.0" style="-fx-background-color: #000000;"
+      stylesheets="@style.css"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.simumic.TertiaryController">
+
+    <padding><Insets top="15.0" right="15.0" bottom="15.0" left="15.0"/></padding>
+
+    <Label text="CACHE — MAPEAMENTO DIRETO" textFill="#077d29"
+           style="-fx-font-weight: bold; -fx-font-size: 16; -fx-font-family: Monospaced;"/>
+
+    <GridPane hgap="15.0" VBox.vgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS" percentWidth="50.0"/>
+            <ColumnConstraints hgrow="ALWAYS" percentWidth="50.0"/>
+        </columnConstraints>
+        
+        <rowConstraints>
+            <RowConstraints vgrow="ALWAYS" />
+        </rowConstraints>
+
+       <VBox spacing="6.0" GridPane.columnIndex="0" VBox.vgrow="ALWAYS">
+              <HBox spacing="10.0" alignment="CENTER_LEFT">
+                     <Label fx:id="labelTituloL1" text="L1" textFill="#f1c40f" style="-fx-font-weight: bold; -fx-font-size: 14; -fx-font-family: Monospaced;"/>
+                     <Label fx:id="labelStatsL1" text="HITS=0  MISSES=0  (0.0%)" textFill="#bdc3c7" style="-fx-font-size: 11;"/>
+              </HBox>
+
+              <HBox spacing="8.0" style="-fx-border-color: #f1c40f; -fx-border-width: 0 0 1 0; -fx-padding: 4 18 4 4;">
+                     <Label text="Linha" prefWidth="42.0" alignment="CENTER" textFill="#f1c40f" style="-fx-font-weight: bold; -fx-font-family: Monospaced; -fx-font-size: 12;"/>
+                     <Label text="V" prefWidth="22.0" alignment="CENTER" textFill="#f1c40f" style="-fx-font-weight: bold; -fx-font-family: Monospaced; -fx-font-size: 12;"/>
+                     <Label text="TAG" prefWidth="45.0" alignment="CENTER" textFill="#f1c40f" style="-fx-font-weight: bold; -fx-font-family: Monospaced; -fx-font-size: 12;"/>
+                     <Label text="Bloco(end)" prefWidth="90.0" alignment="CENTER" textFill="#f1c40f" style="-fx-font-weight: bold; -fx-font-family: Monospaced; -fx-font-size: 12;"/>
+                     <Label text="Conteúdo" prefWidth="175.0" alignment="CENTER" textFill="#f1c40f" style="-fx-font-weight: bold; -fx-font-family: Monospaced; -fx-font-size: 12;"/>
+              </HBox>
+
+            <ListView fx:id="listaL1" VBox.vgrow="ALWAYS" styleClass="cache-list"/>
+        </VBox>
+
+        <VBox spacing="6.0" GridPane.columnIndex="1" VBox.vgrow="ALWAYS">
+              <HBox spacing="10.0" alignment="CENTER_LEFT">
+                     <Label fx:id="labelTituloL2" text="L2" textFill="#f1c40f" style="-fx-font-weight: bold; -fx-font-size: 14; -fx-font-family: Monospaced;"/>
+                     <Label fx:id="labelStatsL2" text="HITS=0  MISSES=0  (0.0%)" textFill="#bdc3c7" style="-fx-font-size: 11;"/>
+              </HBox>
+
+              <HBox spacing="8.0" style="-fx-border-color: #f1c40f; -fx-border-width: 0 0 1 0; -fx-padding: 4 18 4 4;">
+              <Label text="Linha" prefWidth="42.0" alignment="CENTER" textFill="#f1c40f" style="-fx-font-weight: bold; -fx-font-family: Monospaced; -fx-font-size: 12;"/>
+              <Label text="V" prefWidth="22.0" alignment="CENTER" textFill="#f1c40f" style="-fx-font-weight: bold; -fx-font-family: Monospaced; -fx-font-size: 12;"/>
+              <Label text="TAG" prefWidth="45.0" alignment="CENTER" textFill="#f1c40f" style="-fx-font-weight: bold; -fx-font-family: Monospaced; -fx-font-size: 12;"/>
+              <Label text="Bloco(end)" prefWidth="90.0" alignment="CENTER" textFill="#f1c40f" style="-fx-font-weight: bold; -fx-font-family: Monospaced; -fx-font-size: 12;"/>
+              <Label text="Conteúdo" prefWidth="175.0" alignment="CENTER" textFill="#f1c40f" style="-fx-font-weight: bold; -fx-font-family: Monospaced; -fx-font-size: 12;"/>
+              </HBox>
+
+            <ListView fx:id="listaL2" VBox.vgrow="ALWAYS" styleClass="cache-list"/>
+        </VBox>
+
+    </GridPane>
+</VBox>

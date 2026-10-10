@@ -1,0 +1,45 @@
+# ========================
+# FICHEIROS COMPILADOS
+# ========================
+*.class
+*.log
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+
+# ========================
+# MAVEN
+# ========================
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+
+# ========================
+# IDEs E EDITORES DE TEXTO
+# ========================
+# VS Code
+.vscode/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+
+# Eclipse
+.project
+.classpath
+.settings/
+.metadata/
+
+# ========================
+# SISTEMAS OPERATIVOS
+# ========================
+.DS_Store
+Thumbs.db

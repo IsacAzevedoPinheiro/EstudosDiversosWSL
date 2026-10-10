@@ -1,0 +1,203 @@
+name: Autograding Tests
+'on':
+- workflow_dispatch
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Case 1
+      id: case-1
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Case 1
+        setup-command: gcc -o executable encadeamento_exterior.c
+        command: (echo "import sys, struct\nwith open('cases_data.bin', 'rb') as case_file:\n    case_files_sizes
+          = [struct.unpack('i', case_file.read(4))[0] for i in range(10)]\n    case_files
+          = [case_file.read(case_files_sizes[i]) for i in range(10)]\nfor fi, fn in
+          enumerate(['clientes.dat', 'tabHash.dat']):\n    with open(fn, 'wb') as
+          save_file:\n        save_file.write(case_files[2 * int(sys.argv[1]) + fi])"
+          > unpack_case_files.py) && python3 unpack_case_files.py 0 && ./executable
+        input: |-
+          10
+          Gabriel
+        expected-output: |-
+          TABELA HASH:
+          [0]  -1
+          [1]  -1
+          [2]  -1
+          [3]   0
+          [4]  -1
+          [5]  -1
+          [6]  -1
+
+          DADOS:
+          [  0]  10,      Gabriel,  -1,  OCUPADO
+
+          RESULTADO: 0
+        comparison-method: exact
+        timeout: 1
+        max-score: 20
+    - name: Case 2
+      id: case-2
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Case 2
+        setup-command: gcc -o executable encadeamento_exterior.c
+        command: (echo "import sys, struct\nwith open('cases_data.bin', 'rb') as case_file:\n    case_files_sizes
+          = [struct.unpack('i', case_file.read(4))[0] for i in range(10)]\n    case_files
+          = [case_file.read(case_files_sizes[i]) for i in range(10)]\nfor fi, fn in
+          enumerate(['clientes.dat', 'tabHash.dat']):\n    with open(fn, 'wb') as
+          save_file:\n        save_file.write(case_files[2 * int(sys.argv[1]) + fi])"
+          > unpack_case_files.py) && python3 unpack_case_files.py 1 && ./executable
+        input: |-
+          10
+          Leo
+        expected-output: |-
+          TABELA HASH:
+          [0]  -1
+          [1]  -1
+          [2]  -1
+          [3]   0
+          [4]  -1
+          [5]  -1
+          [6]  -1
+
+          DADOS:
+          [  0]  10,      Gabriel,  -1,  OCUPADO
+
+          RESULTADO: -1
+        comparison-method: exact
+        timeout: 1
+        max-score: 20
+    - name: Case 3
+      id: case-3
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Case 3
+        setup-command: gcc -o executable encadeamento_exterior.c
+        command: (echo "import sys, struct\nwith open('cases_data.bin', 'rb') as case_file:\n    case_files_sizes
+          = [struct.unpack('i', case_file.read(4))[0] for i in range(10)]\n    case_files
+          = [case_file.read(case_files_sizes[i]) for i in range(10)]\nfor fi, fn in
+          enumerate(['clientes.dat', 'tabHash.dat']):\n    with open(fn, 'wb') as
+          save_file:\n        save_file.write(case_files[2 * int(sys.argv[1]) + fi])"
+          > unpack_case_files.py) && python3 unpack_case_files.py 2 && ./executable
+        input: |-
+          5
+          Carlos
+        expected-output: |-
+          TABELA HASH:
+          [0]   0
+          [1]  -1
+          [2]   4
+          [3]   1
+          [4]  -1
+          [5]   2
+          [6]  -1
+
+          DADOS:
+          [  0]  49,         Joao,  -1,  OCUPADO
+          [  1]  59,        Maria,   3,  OCUPADO
+          [  2]   5,       Carlos,  -1,  OCUPADO
+          [  3]   3,        Janio,   5, LIBERADO
+          [  4]  51,          Ana,  -1,  OCUPADO
+          [  5]  87,     Mauricio,  -1,  OCUPADO
+
+          RESULTADO: 2
+        comparison-method: exact
+        timeout: 1
+        max-score: 20
+    - name: Case 4
+      id: case-4
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Case 4
+        setup-command: gcc -o executable encadeamento_exterior.c
+        command: (echo "import sys, struct\nwith open('cases_data.bin', 'rb') as case_file:\n    case_files_sizes
+          = [struct.unpack('i', case_file.read(4))[0] for i in range(10)]\n    case_files
+          = [case_file.read(case_files_sizes[i]) for i in range(10)]\nfor fi, fn in
+          enumerate(['clientes.dat', 'tabHash.dat']):\n    with open(fn, 'wb') as
+          save_file:\n        save_file.write(case_files[2 * int(sys.argv[1]) + fi])"
+          > unpack_case_files.py) && python3 unpack_case_files.py 3 && ./executable
+        input: |-
+          17
+          Vanessa
+        expected-output: |-
+          TABELA HASH:
+          [0]   0
+          [1]  -1
+          [2]   4
+          [3]   1
+          [4]  -1
+          [5]   2
+          [6]  -1
+
+          DADOS:
+          [  0]  49,         Joao,  -1,  OCUPADO
+          [  1]  59,        Maria,   3,  OCUPADO
+          [  2]   5,       Carlos,  -1,  OCUPADO
+          [  3]  17,      Vanessa,   5,  OCUPADO
+          [  4]  51,          Ana,  -1,  OCUPADO
+          [  5]  87,     Mauricio,  -1,  OCUPADO
+
+          RESULTADO: 3
+        comparison-method: exact
+        timeout: 1
+        max-score: 20
+    - name: Case 5
+      id: case-5
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Case 5
+        setup-command: gcc -o executable encadeamento_exterior.c
+        command: ' (echo "import sys, struct\nwith open(''cases_data.bin'', ''rb'')
+          as case_file:\n    case_files_sizes = [struct.unpack(''i'', case_file.read(4))[0]
+          for i in range(10)]\n    case_files = [case_file.read(case_files_sizes[i])
+          for i in range(10)]\nfor fi, fn in enumerate([''clientes.dat'', ''tabHash.dat'']):\n    with
+          open(fn, ''wb'') as save_file:\n        save_file.write(case_files[2 * int(sys.argv[1])
+          + fi])" > unpack_case_files.py) && python3 unpack_case_files.py 4 && ./executable'
+        input: |-
+          38
+          Catarina
+        expected-output: |-
+          TABELA HASH:
+          [0]   0
+          [1]  -1
+          [2]   4
+          [3]   1
+          [4]  -1
+          [5]   2
+          [6]  -1
+
+          DADOS:
+          [  0]  49,         Joao,  -1,  OCUPADO
+          [  1]  59,        Maria,   3,  OCUPADO
+          [  2]   5,       Carlos,  -1,  OCUPADO
+          [  3]  17,      Vanessa,   5,  OCUPADO
+          [  4]  51,          Ana,  -1,  OCUPADO
+          [  5]  87,     Mauricio,   6,  OCUPADO
+          [  6]  10,      Gabriel,   7,  OCUPADO
+          [  7]  24,         Lara,   8,  OCUPADO
+          [  8]  38,     Catarina,  -1,  OCUPADO
+
+          RESULTADO: 8
+        comparison-method: exact
+        timeout: 1
+        max-score: 20
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        CASE-1_RESULTS: "${{steps.case-1.outputs.result}}"
+        CASE-2_RESULTS: "${{steps.case-2.outputs.result}}"
+        CASE-3_RESULTS: "${{steps.case-3.outputs.result}}"
+        CASE-4_RESULTS: "${{steps.case-4.outputs.result}}"
+        CASE-5_RESULTS: "${{steps.case-5.outputs.result}}"
+      with:
+        runners: case-1,case-2,case-3,case-4,case-5

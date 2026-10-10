@@ -1,0 +1,82 @@
+1)
+SELECT r.RouteID, COUNT(f.FlightID) as Quant
+FROM route as r
+LEFT JOIN flight as f ON f.RouteID = r.RouteID
+GROUP BY r.RouteID --Aqui é o "balde escolhido" tô contando quantos vôos tem em cada rota, não quantas rotas tem num vôo
+
+
+2)
+SELECT a.AircraftID, at.AircraftName
+FROM aircrafttype as at
+LEFT JOIN aircraft as a ON a.AircraftTypeID = at.AircraftTypeID
+WHERE a.AircraftID IS NULL
+
+
+3)
+SELECT at.AircraftName, COUNT(ac.AircraftID)
+FROM aircrafttype as at
+LEFT JOIN aircraft as ac ON at.AircraftTypeID = ac.AircraftTypeID
+GROUP BY at.AircraftName -- Contando quantos ID de avião tem por nome de tipo
+
+
+4)
+SELECT a.AirportCode, COUNT(r.RouteID) AS Quant
+FROM airport AS a
+LEFT JOIN route AS r ON a.AirportID = r.Origin
+GROUP BY a.AirportCode, a.AirportID
+HAVING COUNT(r.RouteID) > 2 --HAVING é o WHERE só funções de agregação como COUNT, SUM, AVG disse o Gemini
+
+5)
+SELECT r.RouteID, ao.AirportCode as FromAirport, ad.AirportCode as ToAirport, f.FlightID, dep.DepTime, dep.DepDay
+FROM route as r
+JOIN flight as f ON r.RouteID = f.RouteID
+JOIN flightdep as dep ON dep.FlightID = f.FlightID
+JOIN airport as ao ON ao.AirportID = r.Origin
+JOIN airport as ad ON ad.AirportID = r.Destination
+
+
+6)
+SELECT FlightID
+FROM flight
+WHERE FlightID NOT IN(
+    SELECT DepDay
+    FROM flightdep
+    WHERE DepDay = 1
+)
+GROUP BY FlightID
+
+7)
+SELECT r.Origin as FromAirport, r.Destination as ToAirport, c.ClassName
+FROM route as r
+JOIN flight as f ON r.RouteID = f.RouteID
+JOIN flightclass as fc ON f.FlightID = fc.FlightID
+JOIN class as c ON fc.ClassID = c.ClassID
+GROUP BY f.FlightID, fc.ClassID
+HAVING MIN(fc.BasePrice) = (
+    SELECT MIN(BasePrice)
+    FROM flightclass
+)
+
+8)
+SELECT r.Origin as FromAirport, r.Destination as ToAirport, s.FlightDate, c.ClassName
+FROM route as r
+JOIN flight as f ON r.RouteID = f.RouteID
+JOIN stats as s ON f.FlightID = s.FlightID
+JOIN class as c ON s.ClassID = c.ClassID
+GROUP BY f.FlightID, c.ClassID
+HAVING MAX(s.CurrPrice) = (
+    SELECT MAX(CurrPrice)
+    FROM stats
+)--Juntar o mínimo de tabelas possível
+
+=========================BANCO DE DADOS DE FILMES============================
+
+14)
+SELECT AVG(m.rank), m.year
+FROM movies as m
+GROUP BY m.year
+ORDER BY AVG(m.rank) DESC
+
+
+
+15)

@@ -1,0 +1,60 @@
+SELECT r.RouteID, r.Origin, r.Destination
+FROM route as r
+JOIN airport as a ON r.Origin = a.AirportID
+WHERE a.AirportCode = 'LHR'
+OR a.AirportCode = 'AMS';
+
+SELECT r.RouteID, r.Origin, r.Destination
+FROM route as r
+JOIN airport as a ON r.Origin = a.AirportID
+WHERE a.AirportCode = 'LHR'
+UNION
+SELECT r.RouteID, r.Origin, r.Destination
+FROM route as r
+JOIN airport as a ON r.Origin = a.AirportID
+WHERE a.AirportCode = 'AMS';
+
+SELECT r.RouteID, a.AirportCode as Origem, ai.AirportCode as Destino
+FROM route as r
+JOIN airport as a ON r.Origin = a.AirportID
+JOIN airport as ai ON r.Destination = ai.AirportID
+ORDER BY Origem, Destino; --Cuidado com a ordem dos apelidos
+
+SELECT f.*, fl.DepTime--, fl.DepDay
+FROM flight as f
+JOIN flightdep as fl ON f.FlightID = fl.FlightID
+ORDER BY FlightID   --Não são replicatas, é o mesmo vôo em dias diferentes
+--Acabei de descobrir que se tiver ; no fim da consulta dá problema nos comentários, bizarro
+
+SELECT /* DISTINCT */ f.* --Os 3 que tem voo reservado tão no mesmo voo
+FROM pax as p
+JOIN flight as f ON p.FlightID = f.FlightID
+
+SELECT f.FlightID as NúmeroDoVoo, p.PaxName as NomeDoMininoOuDaMinina
+FROM flight as f
+LEFT JOIN pax as p ON p.FlightID = f.FlightID --Antes tava organizado ao contrario, aí dava pra usar RIGHT JOIN, mas parece que esquerda é o padrão
+ORDER BY NúmeroDoVoo, NomeDoMininoOuDaMinina
+
+SELECT f.FlightID
+FROM flight as f
+EXCEPT
+SELECT p.FlightID
+FROM pax as p --dá pra fazer assim tbm: LEFT JOIN pax as p ON f.FlightID = p.FlightID WHERE p.PaxName IS NULL
+
+SELECT f.FlightID, r.Origin, r.Destination
+FROM flight as f
+JOIN route as r ON f.RouteID = r.RouteID
+EXCEPT
+SELECT p.FlightID, r.Origin, r.Destination
+FROM flight as f
+JOIN route as r ON f.RouteID = r.RouteID
+JOIN pax as p ON f.FlightID = p.FlightID
+
+SELECT f.FlightID, r.Origin, r.Destination
+FROM flight as f
+JOIN route as r ON f.RouteID = r.RouteID
+EXCEPT
+SELECT p.FlightID, r.Origin, r.Destination
+FROM flight as f
+JOIN route as r ON f.RouteID = r.RouteID
+JOIN pax as p ON f.FlightID = p.FlightID

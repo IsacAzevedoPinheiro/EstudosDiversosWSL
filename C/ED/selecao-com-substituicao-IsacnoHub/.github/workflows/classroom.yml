@@ -1,0 +1,236 @@
+name: Autograding Tests
+'on':
+- workflow_dispatch
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Case 1
+      id: case-1
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Case 1
+        setup-command: gcc -o executable geracao.c
+        command: echo "20;Maria;\n32;Joao;\n31;Mirtes;\n21;Mariana;\n34;Matheus;"
+          > entrada.txt & (echo 6) | ./executable
+        input: ''
+        expected-output: |-
+          *** p1.txt
+          20;Maria;
+          21;Mariana;
+          31;Mirtes;
+          32;Joao;
+          34;Matheus;
+        comparison-method: exact
+        timeout: 1
+        max-score: 25
+    - name: Case 2
+      id: case-2
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Case 2
+        setup-command: gcc -o executable geracao.c
+        command: echo "29;Maria;\n14;Joao;\n76;Mirtes;\n75;Mariana;\n59;Matheus;\n6;Jonas;\n7;Vanessa;\n74;Karla;\n48;Tatiana;\n46;Larissa;\n10;Marcela;\n18;Bruna;\n56;Catarina;\n20;Leonel;\n26;Leo;\n4;Yasmin;\n21;Ana;\n65;Yoko;\n22;Mauricio;\n49;Jose;\n11;Alice;\n16;JC;\n8;TJ;\n15;Maira;\n5;Viviane;\n19;Fernanda;\n50;Daniel;\n55;Diego;\n25;Harry
+          Potter;\n66;James Bond;\n57;Clark Kent;\n77;Lois Lane;\n12;Iris;\n30;Rosa;\n17;Helo;\n9;Joel;\n54;Carlos;\n78;Alex;\n43;Adriel;\n38;Ana
+          Paula;\n51;Bia;\n32;Milton;\n58;Xande;\n13;Fausto;\n73;Sidney;\n79;Igor;\n27;Alexandre;\n1;Aline;\n3;Andrea;\n60;Murilo;\n36;Rafael;\n47;Ricardo;\n31;Regiane;\n80;Fabio;"
+          > entrada.txt & (echo 6) | ./executable
+        input: ''
+        expected-output: |-
+          *** p1.txt
+          6;Jonas;
+          7;Vanessa;
+          14;Joao;
+          29;Maria;
+          46;Larissa;
+          48;Tatiana;
+          59;Matheus;
+          74;Karla;
+          75;Mariana;
+          76;Mirtes;
+          *** p2.txt
+          4;Yasmin;
+          10;Marcela;
+          18;Bruna;
+          20;Leonel;
+          21;Ana;
+          22;Mauricio;
+          26;Leo;
+          49;Jose;
+          56;Catarina;
+          65;Yoko;
+          *** p3.txt
+          5;Viviane;
+          8;TJ;
+          11;Alice;
+          15;Maira;
+          16;JC;
+          19;Fernanda;
+          25;Harry Potter;
+          50;Daniel;
+          55;Diego;
+          57;Clark Kent;
+          66;James Bond;
+          77;Lois Lane;
+          78;Alex;
+          *** p4.txt
+          9;Joel;
+          12;Iris;
+          17;Helo;
+          30;Rosa;
+          32;Milton;
+          38;Ana Paula;
+          43;Adriel;
+          51;Bia;
+          54;Carlos;
+          58;Xande;
+          73;Sidney;
+          79;Igor;
+          *** p5.txt
+          1;Aline;
+          3;Andrea;
+          13;Fausto;
+          27;Alexandre;
+          31;Regiane;
+          36;Rafael;
+          47;Ricardo;
+          60;Murilo;
+          80;Fabio;
+        comparison-method: exact
+        timeout: 1
+        max-score: 25
+    - name: Case 3
+      id: case-3
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Case 3
+        setup-command: gcc -o executable geracao.c
+        command: echo "29;Maria;\n14;Joao;\n76;Mirtes;\n75;Mariana;\n59;Matheus;\n6;Jonas;\n7;Vanessa;\n74;Karla;\n48;Tatiana;\n46;Larissa;\n10;Marcela;\n18;Bruna;\n56;Catarina;\n20;Leonel;\n26;Leo;\n4;Yasmin;\n21;Ana;\n65;Yoko;\n22;Mauricio;\n49;Jose;\n11;Alice;\n16;JC;\n8;TJ;\n15;Maira;\n5;Viviane;\n19;Fernanda;\n50;Daniel;\n55;Diego;\n25;Harry
+          Potter;\n66;James Bond;\n57;Clark Kent;\n77;Lois Lane;\n12;Iris;\n30;Rosa;\n17;Helo;\n9;Joel;\n54;Carlos;\n78;Alex;\n43;Adriel;\n38;Ana
+          Paula;\n51;Bia;\n32;Milton;\n58;Xande;\n13;Fausto;\n73;Sidney;\n79;Igor;\n27;Alexandre;\n1;Aline;\n3;Andrea;\n60;Murilo;\n36;Rafael;\n47;Ricardo;\n31;Regiane;\n80;Fabio;"
+          > entrada.txt & (echo 3) | ./executable
+        input: ''
+        expected-output: |-
+          *** p1.txt
+          14;Joao;
+          29;Maria;
+          59;Matheus;
+          75;Mariana;
+          76;Mirtes;
+          *** p2.txt
+          6;Jonas;
+          7;Vanessa;
+          46;Larissa;
+          48;Tatiana;
+          74;Karla;
+          *** p3.txt
+          10;Marcela;
+          18;Bruna;
+          20;Leonel;
+          26;Leo;
+          56;Catarina;
+          65;Yoko;
+          *** p4.txt
+          4;Yasmin;
+          21;Ana;
+          22;Mauricio;
+          49;Jose;
+          *** p5.txt
+          8;TJ;
+          11;Alice;
+          15;Maira;
+          16;JC;
+          19;Fernanda;
+          50;Daniel;
+          55;Diego;
+          66;James Bond;
+          *** p6.txt
+          5;Viviane;
+          25;Harry Potter;
+          57;Clark Kent;
+          77;Lois Lane;
+          *** p7.txt
+          12;Iris;
+          17;Helo;
+          30;Rosa;
+          54;Carlos;
+          78;Alex;
+          *** p8.txt
+          9;Joel;
+          38;Ana Paula;
+          43;Adriel;
+          51;Bia;
+          58;Xande;
+          73;Sidney;
+          79;Igor;
+          *** p9.txt
+          13;Fausto;
+          27;Alexandre;
+          32;Milton;
+          60;Murilo;
+          *** p10.txt
+          1;Aline;
+          3;Andrea;
+          31;Regiane;
+          36;Rafael;
+          47;Ricardo;
+          80;Fabio;
+        comparison-method: exact
+        timeout: 1
+        max-score: 25
+    - name: Case 4
+      id: case-4
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Case 4
+        setup-command: gcc -o executable geracao.c
+        command: echo "30;Maria;\n14;Joao;\n15;Mirtes;\n75;Mariana;\n32;Matheus;\n6;Jonas;\n5;Vanessa;\n81;Karla;\n48;Tatiana;\n41;Larissa;\n87;Marcela;\n18;Bruna;\n56;Catarina;\n20;Leonel;\n26;Leo;\n4;Yasmin;\n21;Ana;\n65;Yoko;\n22;Mauricio;\n49;Jose;\n11;Alice;\n16;JC;\n8;TJ;\n12;Maira;"
+          > entrada.txt & (echo 7) | ./executable
+        input: ''
+        expected-output: |-
+          *** p1.txt
+          5;Vanessa;
+          6;Jonas;
+          14;Joao;
+          15;Mirtes;
+          30;Maria;
+          32;Matheus;
+          41;Larissa;
+          48;Tatiana;
+          56;Catarina;
+          75;Mariana;
+          81;Karla;
+          87;Marcela;
+          *** p2.txt
+          4;Yasmin;
+          18;Bruna;
+          20;Leonel;
+          21;Ana;
+          22;Mauricio;
+          26;Leo;
+          49;Jose;
+          65;Yoko;
+          *** p3.txt
+          8;TJ;
+          11;Alice;
+          12;Maira;
+          16;JC;
+        comparison-method: exact
+        timeout: 1
+        max-score: 25
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        CASE-1_RESULTS: "${{steps.case-1.outputs.result}}"
+        CASE-2_RESULTS: "${{steps.case-2.outputs.result}}"
+        CASE-3_RESULTS: "${{steps.case-3.outputs.result}}"
+        CASE-4_RESULTS: "${{steps.case-4.outputs.result}}"
+      with:
+        runners: case-1,case-2,case-3,case-4

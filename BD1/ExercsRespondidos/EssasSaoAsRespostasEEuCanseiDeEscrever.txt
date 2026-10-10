@@ -1,0 +1,38 @@
+SELECT name, year
+FROM movies
+ORDER BY year;
+SELECT first_name, last_name 
+FROM actors as a, roles as r
+WHERE gender = 'F'
+AND a.actor_id = r.actor_id
+ORDER BY first_name, last_name;
+SELECT name, first_name, last_name, role
+from movies as m, actors as a, roles as r 
+WHERE m.year > 2000
+AND a.actor_id = r.actor_id
+and m.movie_id = r.movie_id
+order BY m.name;
+SELECT m.name as titulo, g.name as genero
+from movies as m, genres as g, movies_genres as mg
+where m.movie_id = mg.movie_id
+and mg.genre_id = g.genre_id
+AND (g.name = 'Romance' or g.name = 'Comedy');
+SELECT m.name, d.first_name, d.last_name, m.rank
+from movies as m, directors as d, movies_directors as md
+WHERE m.movie_id = md.movie_id
+AND md.director_id = d.director_id
+and m.rank >= 8;
+SELECT a.first_name, a.last_name, a.gender
+from actors as a, roles as r
+WHERE r.role = 'Kid';
+SELECT a1.first_name AS nomeator1, a2.first_name AS nomeator2, a1.last_name AS sobrenome
+FROM actors AS a1, actors AS a2
+WHERE a1.last_name = a2.last_name
+AND a1.actor_id < a2.actor_id;
+select first_name, last_name
+from actors
+WHERE last_name LIKE 'M%';
+SELECT m.name
+from movies as m, roles as r
+WHERE m.movie_id = r.movie_id
+and role = 'Narrator';

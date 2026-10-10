@@ -1,0 +1,4 @@
+Uso do synchronized.  
+Para que serve: Garante que apenas uma thread possa acessar ou modificar um bloco de código/objeto por vez, evitando condições de corrida e dados inconsistentes.
+Quando usar: Quando múltiplas threads compartilham e alteram as mesmas variáveis na memória.
+Por que não usar em tudo: Porque ele impõe bloqueios que reduzem significativamente o desempenho e a concorrência, além de criar riscos de deadlocks.
