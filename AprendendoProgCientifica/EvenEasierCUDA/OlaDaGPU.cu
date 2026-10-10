@@ -21,4 +21,4 @@ int main() { //host
 }
 
 // nvcc OlaDaGPU.cu
-// ./a
+// ./a.out
