@@ -5,7 +5,8 @@ using namespace std;
 int main(){
     cout << "Ola Mundo!";
     printf("\n\nFunciona!");
-    print("Estranho");
+    printf("Estranho");
+    printf("\n");
     return 0;
 }
 
