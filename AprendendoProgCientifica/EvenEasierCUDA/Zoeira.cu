@@ -10,7 +10,7 @@ __global__ void add(int n, float *x, float *y){
     }
 }
 int main(){
-    int N = 1<<25;
+    int N = 1<<20;
     float *x, *y;
     cudaMallocManaged(&x, N*(sizeof(float)));
     cudaMallocManaged(&y, N*(sizeof(float)));
@@ -22,7 +22,12 @@ int main(){
     int numBlocks = (N+blockSize-1)/blockSize;
     add<<<numBlocks, blockSize>>>(N, x, y);
     cudaDeviceSynchronize();
+
+    cout<<"Tudo certo\n";
+    cout<<x[1000]<<"\n";
+
     cudaFree(x);
     cudaFree(y);
+
     return 0;
 }

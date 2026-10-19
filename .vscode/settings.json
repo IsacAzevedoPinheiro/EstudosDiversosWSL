@@ -1,0 +1,16 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "Filmes",
+            "database": "${workspaceFolder:EstudosDiversosWSL}/BD1/movies-imdb.db"
+        },
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "Aeroportos",
+            "database": "${workspaceFolder:EstudosDiversosWSL}/BD1/airport.db"
+        }
+    ]
+}
