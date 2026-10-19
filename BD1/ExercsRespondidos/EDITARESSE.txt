@@ -1,0 +1,14 @@
+INSERT INTO DEPARTAMENTO
+VALUES (6, 'Logístoca', 66688444400, '2020-10-01')
+
+PRAGMA foreign_keys = ON;
+INSERT INTO DEPARTAMENTO
+VALUES (7, 'Finanças', NULL, NULL);
+UPDATE DEPARTAMENTO
+SET data_inicio_gerente = '2024-11-05',
+cpf_gerente = (
+  SELECT e.cpf
+  FROM EMPREGADO as e
+  WHERE e.nome = 'Franklin'
+)
+WHERE cod_depto = 7
