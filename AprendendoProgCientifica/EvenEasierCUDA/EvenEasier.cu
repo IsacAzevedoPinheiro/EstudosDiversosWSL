@@ -65,8 +65,8 @@ int main(){
     return 0;
 }
 /* para ver o tempo só escrever isso: 
-nsys profile --trace=cuda --sample=none --cpuctxsw=none --force-overwrite=true -o meu_teste .\a.exe
-nsys stats --force-export=true -r cuda_gpu_sum .\meu_teste.nsys-rep */
+nvcc NomeArquivo.cu
+sudo /usr/local/cuda/bin/nsys profile --trace=cuda --sample=none --cpuctxsw=none --force-overwrite=true -o meu_teste ./a.out
 /*
 disponível em: 
 https://developer.nvidia.com/blog/even-easier-introduction-cuda/
