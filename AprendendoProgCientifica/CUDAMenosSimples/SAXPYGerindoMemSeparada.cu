@@ -8,7 +8,6 @@ void saxpy(int N, int *x, int *y){
     {
         y[i] = x[i] * 2;
     }
-    
 }
 
 int main(){

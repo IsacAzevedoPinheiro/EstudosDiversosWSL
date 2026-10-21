@@ -11,6 +11,12 @@
             "driver": "SQLite",
             "name": "Aeroportos",
             "database": "${workspaceFolder:EstudosDiversosWSL}/BD1/airport.db"
+        },
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "aula15",
+            "database": "${workspaceFolder:EstudosDiversosWSL}/BD1/aula15.db"
         }
     ]
 }

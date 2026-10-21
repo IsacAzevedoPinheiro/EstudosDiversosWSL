@@ -26,8 +26,8 @@ int main(){
     //agora definir so blocos de threads
     int tamanho_bloco = 1<<8;
     //a quantidade de blocos é o sufiente para ter uma thread por número no vetor, o truque é somar o tamanho do bloco menos 1 ao N, pq se essa divisão em especial der mais de 1, aumenta a quantidade de blocos em 1
-    int quant_blocos = (N+tamanho_bloco-1)/tamanho_bloco;
-
+    int quant_blocos = (N+tamanho_bloco - 1)/tamanho_bloco;
+    cout<<quant_blocos;
     //chama a função
     saxpy<<<quant_blocos, tamanho_bloco>>>(2, N, x, y);
 
@@ -41,6 +41,5 @@ int main(){
     cudaFree(x);
     cudaFree(y);
     
-
     return 0;
 }
