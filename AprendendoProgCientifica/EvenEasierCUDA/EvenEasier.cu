@@ -64,6 +64,7 @@ int main(){
     cout<<"Fim"<<endl;
     return 0;
 }
+
 /* para ver o tempo só escrever isso: 
 nvcc NomeArquivo.cu
 sudo /usr/local/cuda/bin/nsys profile --trace=cuda --sample=none --cpuctxsw=none --force-overwrite=true -o meu_teste ./a.out
