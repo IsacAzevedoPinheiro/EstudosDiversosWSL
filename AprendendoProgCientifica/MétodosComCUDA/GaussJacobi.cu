@@ -6,7 +6,7 @@ using namespace std;
 //Gaus-Jacobi vai ter primeiro o critério de linhas tal que: alphax é a soma dos módulos dos elementos da linha dividido pelo módulo do elemento da matriz principal
 //Se passar vai pro método que precisa do chute inicial que vai fazer a próxima incógnita seja [b - (soma dos produtos das incógnitas pelos elementos da linha)] / elemento da diagonal principal
 
-__global__
+__device__
 void normaInfinita(double *vet1, double *vet2, int ladoMatriz, double *norma){
     *norma = 0;
     double dif;
@@ -29,6 +29,8 @@ void gaussJacobi(double *matrizA_d, double *vetorB_d, double *vetXAntigo_d, doub
         }
         vetXNovo_d[i] = (vetorB_d[i] - soma)/matrizA_d[i*ladoMatriz+i];
     }
+    if (i == 0)
+        normaInfinita(vetXAntigo_d, vetXNovo_d, ladoMatriz, norma);//gambiarra, n dá pra saber que o primeiro vai ser o 0, depois resolver com biblioteca thrust
 }
 __host__ //é o padrão
 int main(){
@@ -76,7 +78,7 @@ int main(){
     cudaMemcpy(vetXNovo_d, vetXNovo_h, ladoMatriz*sizeof(double), cudaMemcpyHostToDevice);
     cudaMemcpy(norma_d, norma_h, sizeof(double), cudaMemcpyHostToDevice);
 
-    int tamanho_bloco = ladoMatriz;//número de linhas
+    dim3 tamanho_bloco(ladoMatriz);//número de linhas
     int quant_blocos = 1;
 
     for (int i = 0; i < ladoMatriz; i++){
@@ -98,7 +100,6 @@ int main(){
     //laço principal é controlado pelo host
     do{//mudança pra do while pq aí não preciso ter a norma antes da primeira iteração
         gaussJacobi<<<quant_blocos, tamanho_bloco>>>(matrizA_d, vetorB_d, vetXAntigo_d, vetXNovo_d, ladoMatriz, norma_d);
-        normaInfinita<<<1, 1>>>(vetXAntigo_d, vetXNovo_d, ladoMatriz, norma_d);
         cudaMemcpy(norma_h, norma_d, sizeof(double), cudaMemcpyDeviceToHost);
         swap(vetXAntigo_d, vetXNovo_d);
         iteracaoAtual++;
