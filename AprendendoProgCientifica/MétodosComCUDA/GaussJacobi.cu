@@ -1,10 +1,8 @@
 #include <iostream>
 #include <math.h>
 #include <vector>
-#include <utility> //só para fazer a troca de ponteiros
+#include <utility>
 using namespace std;
-//Gaus-Jacobi vai ter primeiro o critério de linhas tal que: alphax é a soma dos módulos dos elementos da linha dividido pelo módulo do elemento da matriz principal
-//Se passar vai pro método que precisa do chute inicial que vai fazer a próxima incógnita seja [b - (soma dos produtos das incógnitas pelos elementos da linha)] / elemento da diagonal principal
 
 __device__
 void normaInfinita(double *vet1, double *vet2, int ladoMatriz, double *norma){
@@ -18,9 +16,9 @@ void normaInfinita(double *vet1, double *vet2, int ladoMatriz, double *norma){
     }
 }
 
-__global__/* sempre void */
+__global__
 void gaussJacobi(double *matrizA_d, double *vetorB_d, double *vetXAntigo_d, double *vetXNovo_d, int ladoMatriz, double *norma){ 
-    int i = threadIdx.x; //o processo aqui vai ser de uma dimensão apenas, uma thread por linha, no final das contas teremos um vetor 1D de threads como está na variável tamanho_bloco.
+    int i = threadIdx.x; 
     if (i<ladoMatriz){
         double soma = 0;
         for (int j = 0; j<ladoMatriz; j++){
@@ -30,9 +28,9 @@ void gaussJacobi(double *matrizA_d, double *vetorB_d, double *vetXAntigo_d, doub
         vetXNovo_d[i] = (vetorB_d[i] - soma)/matrizA_d[i*ladoMatriz+i];
     }
     if (i == 0)
-        normaInfinita(vetXAntigo_d, vetXNovo_d, ladoMatriz, norma);//gambiarra, n dá pra saber que o primeiro vai ser o 0, depois resolver com biblioteca thrust
+        normaInfinita(vetXAntigo_d, vetXNovo_d, ladoMatriz, norma);
 }
-__host__ //é o padrão
+__host__
 int main(){
     int ladoMatriz = 3;
     int Tam = ladoMatriz*ladoMatriz;
@@ -78,7 +76,7 @@ int main(){
     cudaMemcpy(vetXNovo_d, vetXNovo_h, ladoMatriz*sizeof(double), cudaMemcpyHostToDevice);
     cudaMemcpy(norma_d, norma_h, sizeof(double), cudaMemcpyHostToDevice);
 
-    dim3 tamanho_bloco(ladoMatriz);//número de linhas
+    dim3 tamanho_bloco(ladoMatriz);
     int quant_blocos = 1;
 
     for (int i = 0; i < ladoMatriz; i++){
@@ -96,15 +94,13 @@ int main(){
         cout<<"Alpha maior que 1";
         exit(-1);
     }
-    //=========================================================================================
-    //laço principal é controlado pelo host
-    do{//mudança pra do while pq aí não preciso ter a norma antes da primeira iteração
+    do{
         gaussJacobi<<<quant_blocos, tamanho_bloco>>>(matrizA_d, vetorB_d, vetXAntigo_d, vetXNovo_d, ladoMatriz, norma_d);
         cudaMemcpy(norma_h, norma_d, sizeof(double), cudaMemcpyDeviceToHost);
         swap(vetXAntigo_d, vetXNovo_d);
         iteracaoAtual++;
     }while (*norma_h > epsilon && iteracaoAtual < maxIteracoes);
-    //=========================================================================================
+    
     cudaMemcpy(vetSaida, vetXAntigo_d, ladoMatriz*sizeof(double), cudaMemcpyDeviceToHost);
     cout<<"Esse é o vetor de incógnitas: "<<endl;
     for(int i=0; i<ladoMatriz; i++){
