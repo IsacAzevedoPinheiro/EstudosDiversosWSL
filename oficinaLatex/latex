@@ -1,0 +1,114 @@
+\documentclass[]{beamer}
+\usetheme{Madrid} 
+\title{Minha Apresentação}
+\author{Seu Nome}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{indentfirst}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage[portuguese]{babel}
+\geometry{
+    a4paper,
+    total={170mm, 257mm},
+    left=20mm,
+    top=20mm
+}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=green,
+    pdfpagemode=FullScreen
+}
+\title{Teste oficina de \LaTeX}
+\author{Isac Azevedo Pinheiro}
+\date{October 2026}
+\begin{document}
+
+\maketitle
+\section{Introduction}
+\title{Olá eu sou um texto}
+\section{Desenvolvimento 2}
+\subsection{çççççç}
+\title{Eu sou um desenvolvimento\\, estou escrevendo coisas aqui enquanto, }
+\subsection{}
+\begin{center}
+    gdiubdfi
+\end{center}
+
+\begin{equation}
+%
+\begin{array}{cc}
+     abc \mbox{ texto1}    &  \\
+     {TextoBold} & \\
+     \fbox{outro texto} & \\
+      a_2^{32}  x&
+\end{array}
+%
+\end{equation}
+
+sdfslfsjdfsljf
+%
+safjsfj
+%
+çsjfsd
+
+
+
+\begin{align}
+\begin{aligned}
+2x+3 &= 7 & 2x+3-3 &= 7-3 \\
+2x &= 4 & \frac{2x}2 &= \frac42\\
+x &= 2
+\end{aligned}
+\end{align}
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{|l|c|r|}
+    \hline
+        texto 1 &  texto34 & erer\\
+        \cline{2-3}
+        texto 2 & terrw & fdfasd\\
+       qfdwed & vadcv &\\
+       asdsad & adsasd &\\
+    \hline
+    \hline
+    \end{tabular}
+    \caption{Caption}
+    \label{tab:placeholder}
+\end{table}
+\newcounter{meuNumero}{4}
+\usetikzlibrary{positioning,shapes.gates.logic.US}
+    \begin{tikzpicture}[
+        %Environment config
+        font=\sffamily,
+        thick,
+        %Environment styles
+        GateCfg/.style={
+            logic gate inputs={normal,normal,normal},
+            draw,
+            scale=2
+        }
+    ]
+    \path
+        (0,0) node[and gate US, GateCfg, minimum height=1cm, logic gate inputs={normal, normal}](AND1){}
+        (5,3) node[and gate US, GateCfg, minimum height=1cm, logic gate inputs={normal, normal}](AND2){};
+    \draw
+        (AND1.input 1) -- ++(-1,0) coordinate (in1)
+        (AND1.input 2) -- ++(-1,0) coordinate (in2) 
+        (AND1.output) -- ++(1,0) coordinate (out)
+        %
+        (AND2.input 1) -- ++(-1,0) coordinate (in1)
+        (AND2.input 2) -- ++(-1, 0) coordinate (in2)
+        (AND2.output) -- ++(1,0) coordinate (out);
+    \end{tikzpicture} 
+    \begin{figure}
+        \centering
+        %\includegraphics[width=0.5\linewidth]{}
+        \caption{Caption}
+        \label{fig:placeholder}
+    \end{figure}
+\end{document}
+
+
