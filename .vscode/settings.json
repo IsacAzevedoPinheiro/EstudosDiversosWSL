@@ -17,6 +17,12 @@
             "driver": "SQLite",
             "name": "aula15",
             "database": "${workspaceFolder:EstudosDiversosWSL}/BD1/aula15.db"
+        },
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "EstudoP2",
+            "database": "${workspaceFolder:EstudosDiversosWSL}/BD1/sistema_academico.db"
         }
     ]
 }
